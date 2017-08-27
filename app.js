@@ -1,0 +1,1 @@
+angular.module('app', ['ngRoute', 'app.config', 'app.routes', 'app.services', 'app.core']);

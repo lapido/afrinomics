@@ -1,0 +1,44 @@
+<!-- <div class="card-panel" id="summary-block">
+<span class="card-title" ng-show="summary.content"><h3>{{summary.title_page}}</h3></span>
+<p style="line-height:30px; color:black">
+{{summary.content}}
+<div ng-hide="summary.content" class="widget-description">
+	Click a country from the sidebar to view the economy profile of the country
+</div>
+</p>
+<div ng-show="summary.content" >Excerpted from Wikipedia.</div>
+</div> -->
+
+<div id="summary-div">
+	<div ng-hide="summary.content" class="widget-description card-panel">
+			<p>
+			This section provides brief information about the economy of each African country.
+			All information in this section are excerpted from wikipedia. <br>
+			All you have to do is to click a country from the sidebar to view the country's economy profile.
+			</p>
+</div>
+
+<div class="row"  id="summary-block" ng-show="summary.content">
+	<div class="col m4">
+		<div class="responsive-img img-logo">
+			<img ng-src="http://www.geonames.org/flags/x/{{summary.iso2 | lowercase}}.gif" class="responsive-img">
+		</div>
+
+		<div class="card-panel"  ng-show="summary.content">
+			<table id="infobox_cus" cellpadding="0">
+				
+			</table>
+		</div>
+	</div>
+	<div class="col m8">
+		<div class="card-panel" id="content-block">
+		<span class="card-title" ng-show="summary.content"><h3>{{summary.title_page}}</h3></span>
+		<p style="line-height:30px; color:black">
+		{{summary.content}}
+		
+		</p>
+		<div ng-show="summary.content" >Excerpted from Wikipedia.</div>
+		</div>
+	</div>
+</div>
+</div>

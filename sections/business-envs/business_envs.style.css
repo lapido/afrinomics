@@ -1,0 +1,63 @@
+	.svg {
+			  width: 100%; 
+			  margin: 0 auto;
+			}
+
+	.subunit {
+		cursor: pointer;
+		stroke:#fff;
+	}
+	.subunit-boundary{
+		fill:none;
+		/*stroke:#fff;*/
+	}
+	.slider{
+		margin:auto;
+		width: 30%;
+	}
+	/*.tick text {
+  font-size: 10px;
+}*/
+	.key path {
+  display: none;
+}
+
+.key line {
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.indicator_title text{
+
+}
+.title-placement h5{
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+}
+
+#indicators-label li a{
+	color: #B71C1C;
+	font-weight: bolder;
+}
+#indicators-label i{
+	color: #eeeeee;
+}
+
+.indicator-info{
+	text-align: justify;
+}
+.card-title-indicator{
+	padding-bottom: 20px;
+	font-weight: bolder;
+}
+.card-action a{
+	cursor: pointer;	
+}
+.collection .collection-item{
+	padding-left: 50px;
+	font-weight: lighter;
+}
+.collection-item a{
+	font-weight: lighter;
+	cursor: pointer;			
+}

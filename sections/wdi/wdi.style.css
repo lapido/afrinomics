@@ -1,0 +1,26 @@
+#wdi-section{
+	margin-top: 20px;
+
+}
+
+.chart-title{
+	text-align: center;
+	font-weight: bold;
+	margin-bottom: 20px;
+
+}
+.loading{
+  /*position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 50px;
+  top: 30%;*/
+  z-index: 99999;
+  text-align: center; 
+}
+
+.widget-description{
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 0px;
+}

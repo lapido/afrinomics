@@ -1,0 +1,53 @@
+#summary-div{
+	height: 100%;
+}
+#summary-block{
+	margin: 70px auto 0 auto;
+	width: 90%;
+	height: auto;
+	text-align: justify;
+	font-family: 'josefin sans', sans-serif;
+	
+}
+#content-block{
+	font-size: 1.2em;
+	line-height: 2.5;
+}
+
+.img-logo img{
+	width: 100%;
+}
+
+#infobox_cus tbody tr:first-child{
+	display: none;
+}
+
+#infobox_cus caption{
+	display: none;
+}
+#infobox_cus tbody tr{
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+#infobox_cus tbody{
+	border-spacing: 0px;
+}
+#infobox_cus{
+	padding: 0px;
+}
+#infobox_cus a{
+	pointer-events:none;
+	cursor: default;
+	/*opacity: 0.6;*/
+	color: black;
+}
+.widget-description{
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
+	font-size: 1em;
+	line-height: 2.1em;
+	/*border:1px solid grey;*/
+	margin-top: 70px;
+	font-family: 'josefin sans', sans-serif;
+}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title></title>
+	<!-- stylesheet -->
+	<!-- https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.css -->
+	<link rel="stylesheet" type="text/css" href="assets/css/nouislider.min.css">
+	<!--<link rel="stylesheet" type="text/css" href="http://localhost:90/library/materialize/css/materialize.css">-->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="sections/summary/summary.style.css">
+	<link rel="stylesheet" type="text/css" href="sections/wdi/wdi.style.css">
+	<link rel="stylesheet" type="text/css" href="sections/business-envs/business_envs.style.css">
+	<link rel="stylesheet" type="text/css" href="assets/js/d3.slider.css">
+	<link rel="stylesheet" type="text/css" href="assets/js/example-styles.css">
+	
+
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Play:400,700|Josefin+Sans:400,300italic,400italic,300|Aldrich:400">
+
+	<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</head>
+
+
+<body data-ng-app="app">
+
+
+
+
+
+
+<div id="pageWrapper">
+	<header class="adjsutLeft">
+		<div class="navbar-fixed">
+			<nav class="top-nav">
+				<div class="container-fluid">
+					<div class="nav-wrapper">
+						<ul class="">
+				          <!-- <li><a href="sass.html">Sass</a></li>
+				          <li><a href="badges.html">Components</a></li> -->
+				          <li><a href="#" class="button-collapse" data-activates="slide-out" data-sidenav="left" data-menuwidth="300" data-closeonclick="false">
+			    			<i class="material-icons">menu</i>
+							</a></li>
+				        </ul>
+						<a href="" class="web-title">Afrinomics</a>
+
+						        
+					</div>
+				</div>
+			
+			</nav>
+		</div>
+	
+		<section>
+			<ul id="slide-out" class="side-nav fixed">
+				<li class="search"> 
+					<div class="search-wrapper card">
+						<input id="search"  ng-model="searchCountry_1" />
+						<!-- <i class="material-icons">search</i> -->
+					</div>
+				</li>
+				
+				<div id='list-item' ng-controller='CountryController as country_list'>
+					
+					<li ng-repeat='country in country_list.countries | filter: searchCountry_1' ng-click='country_list.func(country.alpha3Code,country.name, country.alpha2Code)'>
+							<!-- use ngbind instead, try that later -->
+							
+							<div class="row">
+								<div class="col m10 s10">
+									{{country.name}}
+								</div>
+								<div class="col m2 s2">
+									
+								<img ng-src="http://www.geonames.org/flags/x/{{country.alpha2Code | lowercase}}.gif" class="responsive-img">
+								</div>
+							</div>
+
+						</li>
+				</div>
+
+					
+			</ul>
+			
+			
+		</section>
+	</header>
+	<main id="main-body" class="adjsutLeft">
+		<div class="breadcrumb grey lighten-3 row">
+      		<h6>
+        		<a href="#/wdi">World Bank Indicators</a>
+      		</h6>
+      		<h6>
+        		<a href="#/summary">Economy Summary</a>
+      		</h6>
+      		<h6>
+        		<a href="#/business-envs">Business Environment</a>
+      		</h6>
+    	</div>
+
+    	<div id="container" class="main-view">
+    		<ng-view></ng-view>
+    	</div>
+
+	</main>
+
+	<footer class="page-footer adjsutLeft">
+		<div class="container">
+			<p>
+				This is a beta version of the Afrinomics Data Portal which is still undergoing development before its official release. Should you encounter any glitches, lack of functionality or other problems on the website, please email <b>victortemitope95@gmail.com</b>. <br>
+				Your help in this regard is greatly appreciated.
+			</p>
+		</div>
+	</footer>
+</div>
+
+<!-- javascript library -->
+<!-- https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/9.0.0/nouislider.min.js -->
+<script type="text/javascript" src="assets/js/nouislider.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.min.js"></script>
+<!--<script type="text/javascript" src="http://localhost:90/library/angular/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="http://localhost:90/library/angular/angular-route.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular-route.min.js"></script>
+<!--<script type="text/javascript" src="http://localhost:90/library/chart/chartjs/Chart.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+<!--<script type="text/javascript" src="http://localhost:90/library/chart/chartjs/angular-chart.js"></script>-->
+<script src="https://cdn.jsdelivr.net/angular.chartjs/1.0.3/angular-chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+<!--<script type="text/javascript" src="http://localhost:90/library/materialize/js/materialize.js"></script>-->
+<!--<script type="text/javascript" src="http://localhost:90/library/materialize/js/angular-materialize.min.js"></script>-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-materialize/0.2.1/angular-materialize.min.js"></script>
+<script src="assets/js/d3.v3.js"></script>
+<script type="text/javascript" src="assets/js/d3-queue.v2.min.js"></script>
+<script type="text/javascript" src="assets/js/topojson.v1.min.js"></script>
+<script type="text/javascript" src="assets/js/colorbrewer.js"></script>
+<script src="assets/js/d3.slider.js"></script>
+<script src="assets/js/d3.tip.v0.6.3.js"></script>
+
+
+
+<!-- MODULES -->
+<script type="text/javascript" src="app.config.js"></script>
+<script type="text/javascript" src="app.routes.js"></script>
+<script type="text/javascript" src="app.services.js"></script>
+<script type="text/javascript" src="app.core.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+<!-- CONTROLLERS -->
+<script src="sections/wdi/wdi.ctrl.js"></script>
+<script src="sections/summary/summary.ctrl.js"></script>
+<script type="text/javascript" src="components/country/country.list.js"></script>
+<script src="sections/business-envs/business_envs.js"></script>
+<!-- <script src="sections/business-envs/try.js"></script> -->
+
+
+<!-- SERVICES -->
+<script type="text/javascript" src="services/show.data.js"></script>
+
+</body>
+</html>

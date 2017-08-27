@@ -1,0 +1,113 @@
+					
+					<div id="wdi-section" class="row">
+							
+
+
+							<div class="row control">
+							<div class="col m5 s12">
+							
+								<select class="browser-default" ng-options="item.id as item.name for item in data.total_indicators track by item.id" ng-model="data.selected_indicator" ng-change="data.changeIndicator(data.selected_indicator)" chart-legend="true">
+									
+									<option value="" disabled="" selected="">Pick an indicator to view</option>
+								</select>
+							</div>
+							<div class="col m2 s12">
+								<select class="browser-default" ng-options="item.value as item.name for item in data.scale_options track by item.value" ng-model="data.scaleOption" ng-change="data.updateScale(data.scaleOption)" chart-legend="true">
+									<!-- <option ng-repeat="scale_option in data.scale_options" value="{{scale_option.value}}">{{scale_option.name}}</option> -->
+									<option value="" disabled="" selected="">Choose a Scale</option>
+								</select>
+							</div>
+
+							<div class="col m2 s12">
+								<select class="browser-default" ng-options="item.value as item.name for item in data.chart_type track by item.value" ng-model="data.type" ng-change="data.changeChart(data.type)" chart-legend="true">
+									<!-- <option ng-repeat="scale_option in data.scale_options" value="{{scale_option.value}}">{{scale_option.name}}</option> -->
+									<option value="" disabled="" selected="">Chart type</option>
+								</select>
+							</div>
+							<div class="col m1 s12">
+								
+								<button class="waves-effect waves-light btn" ng-click="data.deleteChart()">Clear</button>
+							</div>	
+								
+							</div>
+						
+						<div id="chart-section">
+							<div class="row">
+									<!-- <div class="chart-title">{{data.selector_title}}</div> -->
+
+									<div class="loading hide">
+
+										<br>
+											<div class="preloader-wrapper big active">
+												<div class="spinner-layer spinner-red">
+													<div class="circle-clipper left">
+														<div class="circle"></div>
+													</div>
+													<div class="gap-patch">
+														<div class="circle"></div>
+													</div>
+													<div class="circle-clipper right">
+														<div class="circle"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									
+									<div class="row">
+										<div id="wdi-desc" class="widget-description card-panel">
+										<p>
+										You can graphically view World Bank Indicators for several African Countries.
+										You can also make comparison among various African Countries.
+										The default indicator is GDP.
+										<br>
+										<br>
+										Data sourced from the World Bank.
+
+										</p>
+									</div>
+									<canvas id="base" class="chart-base" chart-type="data.type" chart-labels="data.label_1" chart-data="data.f_data" chart-series="data.series" chart-options="data.options" chart-dataset-override="data.datasetOverride" chart-legend='true' chart-colors="data.colors">
+									</canvas>
+									<div class="col m8"></div>
+									<div class="col m2">
+										<a class="waves-effect waves-light btn" id="download" 
+									  onclick="var download = document.getElementById('download');
+									  download.href = document.getElementById('base').toDataURL('image/jpeg', 1.0);
+									  download.download='{{data.title_img}}'">
+									Download Chart</a>	
+									</div>
+									
+									</div>
+									
+									
+								
+							</div>
+							
+								<div class="container-fluid" style="margin:auto;width:50%">
+									<div class="row">
+									<!-- <div class="col m6"><input type="text" ng-model="data.yearStart" ng-blur="data.changeYear(data.yearStart, data.yearStart )" width="100px" /></div>
+									<div class="col m6"><input type="text" ng-model="data.yearEnd" ng-blur="data.changeYear(data.yearStart,data.yearStart)" width="100px" /></div> -->
+									<div class="col m3" input-field>
+										<select class="browser-default" ng-model="data.yearStart" ng-change="data.changeYear(data.yearStart, data.yearEnd)">
+											<option disabled>From</option>
+											<option ng-repeat="value in data.years" >{{value}}</option>
+										</select>
+									</div>
+									
+									<div class="col m3" input-field>
+										<select class="browser-default" ng-model="data.yearEnd" ng-change="data.changeYear(data.yearStart, data.yearEnd)">
+											<option disabled>To</option>
+											<option ng-repeat="value in data.years | orderBy: '-data.years':data.reverse">{{value}}</option>
+										</select> 
+										<!-- <select class="browser-default" ng-options="item in data.years" ng-model="data.yearEnd" ng-change="data.changeYear(data.yearStart, data.yearEnd)"> -->
+									</div>
+									<!-- <div nouislider ng-model="data.yearBoth" min="1970" max="2015" ></div> -->
+									<!-- <div nouislider ng-model="data.yearBoth" min="5" max="300"></div> -->
+								</div>
+							</div>
+								
+							
+						</div>
+
+						
+						</div>
+						

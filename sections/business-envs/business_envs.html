@@ -1,0 +1,388 @@
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col s12 m3" id="indicators-label">
+			<label>Indicators</label>
+			<ul class="collapsible" data-collapsible="accordion">
+				<li>
+					 <div class="collapsible-header"><i class="material-icons">label</i>Ease of Doing Business</div>
+			      	 <div class="collapsible-body">
+			      	 	 <ul class="collection">
+					      <li class="collection-item"><a onclick="updateData('electricity');">Cost to get Eletricity</a></li>
+					      <li class="collection-item"><a onclick="updateData('start_business');">Cost to start a Business</a></li>
+					      <li class="collection-item"><a onclick="updateData('register_property');">Cost to get register Property</a></li>
+					      
+					    </ul>
+			      	 </div>	
+				</li>
+				<!-- <li onclick="updateData('hdi');">
+			      <div class="collapsible-header"><i class="material-icons">label</i><a onclick="updateData('hdi');">Human Development index</a></div>
+			      
+			    </li> -->
+			    <li>
+			      <div class="collapsible-header"><i class="material-icons">label</i><a onclick="updateData('EF');">Economic Freedom</a></div>
+			      <!-- <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div> -->
+			    </li>
+			     <li>
+			      <div class="collapsible-header"><i class="material-icons">label</i><a onclick="updateData('cpi');">Corruption Perception Index</a></div>
+			      <!-- <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div> -->
+			    </li>
+			     <li>
+			      <div class="collapsible-header"><i class="material-icons">label</i><a onclick="updateData('bpi');">Baseline Profitability Index</a></div>
+			      <!-- <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div> -->
+			    </li>
+			</ul>
+
+			<div id="ordinal-scale">
+				
+			</div>
+		</div>
+		<div class="col s12 m6">
+			<div class="map-section">
+				<div class="title-placement">
+					<h5></h5>
+				</div>
+				<div class="svg">
+					
+				</div>
+			</div>
+		</div>
+		<div class="col s12 m3">
+			<div class="card blue-grey darken-1">
+	            <div class="card-content white-text">
+	              <div class="card-title-indicator">Indicator Summary</div>
+	              <p class="indicator-info"></p>
+	            </div>
+	            <div class="card-action">
+	              <a href="#" class="official-link"></a>
+	              
+	            </div>
+          </div>			
+		</div>
+	</div>
+	.....
+</div>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+	//css stying to rearrange the page
+	d3.select('#slide-out')
+		.style('display', 'none');
+	d3.select('header')
+		.classed('adjsutLeft', false);
+	d3.select('footer')
+		.classed('adjsutLeft', false);
+	d3.select('main')
+		.classed('adjsutLeft', false);
+
+
+
+	var width = 750,
+	height = 550;
+var startYear = 2014;
+isSlider = false;
+currentYear = null;
+svg = d3.select('.svg').append('svg')
+	.attr('width', width)
+	.attr('height',height);
+
+map = svg.append('g')
+					.attr('class',"map");
+	var colorScale = d3.scale.threshold();
+		
+
+
+	
+	d3.json('sections/business-envs/map.topo.json', function(error, json){
+		if (error) {return console.error(error);}
+
+		var projection = d3.geo.mercator()
+			.center([40,0])
+			.scale(2300)
+			.translate([width/2, height/2]);
+
+
+		path = d3.geo.path()
+			.projection(projection);
+		country = topojson.feature(json, json.objects.collection).features;
+
+		
+		// update('data/hdi.csv');
+		
+		
+		
+
+		
+	
+	});	
+function update(file, colorDomain,scaleDomain,ord_scale_value,title,indicator_id) {
+
+			
+			var scaleLength = 30 * colorDomain.length;
+			console.log(scaleLength);
+			colorScale.domain(colorDomain);
+			colorScale.range(colorbrewer.PuRd[String(colorDomain.length + 1)]);
+			formatValue = d3.format("s");
+			var x = d3.scale.ordinal()
+				.domain(colorDomain)
+				.rangePoints([0, scaleLength]);
+			// var x = d3.scale.linear()
+			// 	.domain(scaleDomain)
+			// 	.range([0,100]);
+				// .rangePoints(scaleDomain);
+			
+			// var x = d3.scale.ordinal()
+			// 	.domain(['Low','Medium','High','Very High'])
+			// 	.rangePoints([0, 1], 0.1);
+			var xAxis = d3.svg.axis()
+				.orient('bottom')
+				.scale(x)
+				// .tickSize(5)
+				.tickValues(colorScale.domain());
+				// .tickFormat(function (d){ return formatValue(d)});
+
+			if (data_info[indicator_id][0]['isOrdinalscale']) {
+				var ord_value = ord_scale_value;
+				//ordinal scalling and axis
+				o = d3.scale.ordinal()
+				    .domain(ord_value)
+				    .range(colorScale.range());
+				
+					var ord_padding = 10;
+					var ord_svg = svg.append('g')
+						.attr('class','ord_scale_g')
+						.attr('transform', 'translate(-90,70)');
+					ord_svg.append('g').attr('class','ord-scale')
+						.selectAll('rect')
+						.data(colorScale.range().map(function(d,i){
+							return d;
+						})).enter().append('rect')
+						.attr('height', 20)
+						.attr('x', 500)
+						.attr('width', 30)
+						.attr('y',function(d,i){
+							return 20*i;
+						})
+						.style('fill', function(d,i){
+							return o(i);
+						})
+					ord_svg.append('g')
+						.attr('transform', 'translate(0,15)')
+						.attr('class', 'ord_text')
+						.selectAll('text')
+						.data(ord_value)
+						.enter()
+						.append('text')
+						.style('fill', 'black')
+						.attr('x', 500+ord_padding+30)
+						.attr('y', function(d,i){
+							return 20*i;
+						})
+						// .attr("dx", "50px") // set offset x position
+						// .attr("dy", ".35em")
+						.attr("text-anchor", "start")
+						.text(function(d){
+							return d;
+						})
+			}
+			
+			
+			
+			//adding title to the map
+			var map_title = title + " - " + currentYear;
+			d3.select('.title-placement h5')	
+				.text(map_title);
+			
+
+			var g = svg.append('g')
+				.attr('class', 'key')
+				.attr('transform', 'translate(400,40)');
+
+
+			g.selectAll('rect')
+				.data(colorScale.range().map(function(d, i){
+					return {
+						x0: i ? x(colorScale.domain()[i]): x.range()[0],
+						x1: i < colorScale.domain().length ? x(colorScale.domain()[i]) : x.range()[1],
+						
+						z:d
+					};
+				}))
+				.enter().append('rect')
+					.attr('height', 8)
+					// .attr('x', function(d,i){return d.x0; })
+					// .attr('width', function(d){ return d.x1 - d.x0; })
+
+					.attr('x', function(d,i){return 30*i })
+					.attr('width', 30)
+					.style('fill', function(d){ return d.z; });					
+				g.call(xAxis).selectAll('.tick').each(function(data){
+					var tick = d3.select(this);
+					var transform = d3.transform(tick.attr("transform")).translate;
+					var x = transform[0] + 30;
+					tick.attr("transform", "translate("+ x +",0)");
+					// console.log(d3.transform(tick.attr("transform")).translate[0]);
+				});
+
+				// g.append('text')
+				// 	.attr('class', 'caption')
+				// 	.attr('y', -6)
+				// 	.text(scaleDomain[0] + '------'+scaleDomain[1]);
+			
+
+
+			d3.csv(file, function(error,data){
+
+				for (var j=0; j < country.length; j++) {
+					//clean existing data
+					country[j].properties.current_data = undefined;
+					country[j].properties.rank_data = undefined;
+				}
+
+				if (error) {console.error(error);}
+				console.log(data);
+				for (var i=0; i<data.length;i++) {
+					var dataState = data[i].Country;
+					var dataValue = parseFloat(data[i]['Year'+currentYear]);
+					
+					var rankValue = parseInt(data[i]['rank'+currentYear]);
+					
+						for (var j=0; j < country.length; j++) {
+						var jsonState = country[j].properties.subunit;
+						
+						if (dataState == jsonState) {
+							//copy the data value into the GeoJson
+							if (!dataValue) {
+								country[j].properties.current_data = 'NaN';	
+							}
+							country[j].properties.current_data = dataValue;
+							country[j].properties.rank_data = rankValue;
+							break;
+						}
+					}
+
+				}
+
+				//this is for the tooltip
+				var tip = d3.tip()
+				  .attr('class', 'd3-tip')
+				  .offset([-10, 0])
+				  .html(function(d) {
+				    return "<strong>"+d.properties.subunit+"</strong> <span><br/>Score: " + d.properties.current_data + "<br/>Rank: "+d.properties.rank_data+" / " + data_info[indicator_id][0]['totalCountries']+"</span>";
+				  })
+				map.call(tip);
+
+				//adding the indicator info to the heb
+				var indicator_info = data_info[indicator_id][0]['indicator_info'];
+				var official_link = data_info[indicator_id][0]['indicator_official_link'];
+				var indicator_title = data_info[indicator_id][0]['title'];
+				// console.log(data_info);
+				d3.select('.indicator-info')
+					.text(indicator_info);
+				d3.select('.official-link')
+					.attr('href', official_link)
+					.text(indicator_title);
+
+				map.selectAll('path')
+				.data(country)
+				.enter()
+				.append('path')
+				.attr('d',path)
+				.attr('class', 'subunit')
+				.style('fill', function(d,i){
+					var value = d.properties.current_data;
+					if (value) {	
+						return colorScale(value);
+					} else {
+						return "#ccc";
+					}
+			})
+				.on('mouseover', tip.show)
+      			.on('mouseout', tip.hide);
+				// .append("svg:title")
+				// .text(function (d) {
+				// 	return d.properties.subunit + ":" + d.properties.current_data;
+				// });
+
+			
+				});
+
+
+			if (isSlider) {
+			
+			//this is to fetch the starting and ending date from the data info array for the slider
+			var start_year = data_info[indicator_id][0]['slider_start_year'];
+			var end_year = data_info[indicator_id][0]['slider_end_year'];
+			if (d3.select('.slider').empty()) {
+				d3.select('.map-section').append('div').attr('class','slider').call(d3.slider()
+				// .axis(true).min(2000).max(2014).value(2014)
+				.scale(d3.time.scale().domain([new Date(start_year,1,1), new Date(end_year,1,1)]))
+				.value(new Date(2014,1,1))
+				.axis(d3.svg.axis().ticks(6))
+				.on("slide", function(evt, value){
+					// console.log((new Date(value)).getFullYear());
+					var newYear = (new Date(value)).getFullYear();
+		       		if (newYear != currentYear) {
+		       			currentYear = newYear;
+		       			map.selectAll("path").remove();
+		       			svg.select('.key').remove();
+		       			svg.select('.ord_scale_g').remove();
+		       			svg.select('.indicator_title').remove();
+		       			update(file, colorDomain,scaleDomain,ord_scale_value,title,indicator_id);
+		       		}
+				}));
+
+			}
+		}
+
+
+			
+
+		}
+		function updateData(indicator_id) {
+			console.log(data_info);
+			svg.selectAll('path').remove();
+			svg.select('.key').remove();
+			svg.select('.ord_scale_g').remove();
+			svg.select('.indicator_title').remove();
+			
+			var fileName = 'sections/business-envs/data/'+data_info[indicator_id][0]['file_name'];
+			var color_domain = data_info[indicator_id][0]['color_domain'];
+			var linear_scale_domain = data_info[indicator_id][0]['linear_scale_domain'];
+			var ordinal_scale_value = data_info[indicator_id][0]['ordinal_scale_value'];
+			var title = data_info[indicator_id][0]['title'];
+			var isSlider_i = data_info[indicator_id][0]['isSlider'];
+			if (isSlider_i) {
+				isSlider = true;
+				
+			} else{
+				// if ()
+				d3.select('.slider').remove();
+				isSlider = false;
+
+			}
+			currentYear = data_info[indicator_id][0]['start_year'];
+			update(fileName, color_domain,linear_scale_domain,ordinal_scale_value,title,indicator_id);
+			
+			
+		}
+
+		//loading all the data info
+		var data_info = {};
+		d3.json('sections/business-envs/data/data-schema.json', function(err, data){
+			if (err) {console.error(err);}
+			// for (i in data[indicator_id][0]){
+			// 	console.log(i);
+			// }
+			data_info = data;
+			console.log(data_info['hdi'][0]['file_name']);
+		});
+
+</script>

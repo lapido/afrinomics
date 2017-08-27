@@ -1,0 +1,118 @@
+{
+	"hdi":[
+		{
+			"file_name":"hdi.csv",
+			"start_year": 2014,
+			"color_domain":[0.55,0.7,0.8],
+			"linear_scale_domain":[0,1],
+			"isSlider":true,
+			"slider_start_year": 2010,
+			"slider_end_year": 2014,
+			"isOrdinalscale":true,
+			"ordinal_scale_value":["Low Human Development", "Medium Human Development", 
+		      "High Human Development", "Very High Human Development"],
+		    "title": "Human Development Index",
+		    "indicator_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+								
+			"indicator_official_link":"https://afinomic.neocities.org"
+		}
+	],
+
+	"EF":[
+		{
+			"file_name":"economic_freedom.csv",
+			"start_year": 2016,
+			"color_domain": [50,60,70,80],
+			"linear_scale_domain":[0,100],
+			"isSlider":false,
+			"isOrdinalscale":true,
+			"ordinal_scale_value": ["Repressed", "Mostly unfree", "Moderately free", "Mostly free", "Free"],
+			"title": "Economic Freedom",
+			"totalCountries":110,
+			"indicator_info": "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmodtempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse",
+			"indicator_official_link":"https://afinomic.neocities.org"
+		}
+	],
+
+	"cpi": [
+		{
+			"file_name":"cpi.csv",
+			"start_year": 2015,
+			"color_domain": [20,40,60,80],
+			"linear_scale_domain":[0,100],
+			"isSlider":false,
+			"isOrdinalscale":false,
+			"ordinal_scale_value": ["Repressed", "Mostly unfree", "Moderately free", "Mostly free", "Free","Repressed", "Mostly unfree", "Moderately free", "Mostly free"],
+			"title": "Corruption Perception Index",
+			"totalCountries":167,
+			"indicator_info": "The CPI is the mostly widely used indicator of corruption index, it scores and ranks countries/territories based on how corrupt a country’s public sector is perceived to be. A country’s score indicates the perceived level of public sector corruption on a scale of 0-100, where 0 means that a country is perceived as highly corrupt and a 100 means that a country is perceived as very clean.",
+			"indicator_official_link":"http://www.transparency.org/research/cpi/overview"
+		}
+
+	],
+	
+	"bpi": [
+		{
+			"file_name":"bpi.csv",
+			"start_year": 2015,
+			"slider_start_year": 2014,
+			"slider_end_year": 2015,
+			"color_domain": [0.9,0.95,1,1.05,1.1],
+			"linear_scale_domain":[0,2],
+			"isSlider":true,
+			"isOrdinalscale":false,
+			"title": "Baseline Profitability Index",
+			"totalCountries":110,
+			"indicator_info": "Baseline Profitability index (BPI) brings together eight factors to predict the total pretax return investors might expect in countries around the world: economic growth, financial stability, physical security, corruption, expropriation by government, exploitation by local partners, capital controls, and exchange rates. According to the author, the idea of BPI is to see how all these factors might affect a foreign direct investment. Higher score indicates a better place to invest. Botswana had the highest BPI in 2014 with a value of 1.31.",
+			"indicator_official_link":"http://foreignpolicy.com/2015/06/25/where-to-invest-around-the-world-2015-edition-bpi-baseline-profitability-index/"
+		}
+
+	],
+
+	"electricity": [
+		{
+			"file_name":"electricity.csv",
+			"start_year": 2015,
+			
+			"color_domain": [5000,10000,15000],
+			"linear_scale_domain":[0,100],
+			"isOrdinalscale":false,
+			"title": "Cost to get Eletricity",
+			
+			"indicator_info": "The Getting Electricity indicator is one of the 11 indicator sets published by the Doing Business report. It measures the procedures, time and cost required for a business to obtain a new electricity connection, as well as the reliability of electricity supply and transparency of tariffs.",
+			"indicator_official_link":"http://www.doingbusiness.org/methodology"
+		}
+
+	],
+	"start_business": [
+		{
+			"file_name":"start_business.csv",
+			"start_year": 2015,
+			
+			"color_domain": [10,50,200,300],
+			"linear_scale_domain":[0,100],
+			"isOrdinalscale":false,
+			"title": "Cost to start a Business",
+			
+			"indicator_info": "The starting a business indicator measures the number of procedures, time, cost and the paid-in minimum capital requirement for a small and medium-size limited liability company to start up and formally operate, is one of the 11 indicator sets published by the Doing Business report.",
+			"indicator_official_link":"http://www.doingbusiness.org/methodology"
+		}
+
+	],
+	"register_property": [
+		{
+			"file_name":"register_property.csv",
+			"start_year": 2015,
+			
+			"color_domain": [1,5,10,15,20],
+			"linear_scale_domain":[0,100],
+			"isOrdinalscale":false,
+			"title": "Cost to register a Business",
+			
+			"indicator_info": "The Registering Property indicator, which measures the quality and efficiency of land administration, is one of the 11 indicator sets published by the Doing Business report.",
+			"indicator_official_link":"http://www.doingbusiness.org/methodology"
+		}
+
+	]
+
+}
